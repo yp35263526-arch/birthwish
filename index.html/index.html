@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Love Animation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+                        url('https://images.unsplash.com/photo-1644183461339-478d725014e9?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8NGslMjBkYXJrJTIwZmxvd2Vyc3MlMjBob3Jpem9udGFsfGVufDB8fDB8fHww');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            padding: 20px;
+        }
+
+        #text {
+            font-size: 6vw;
+            font-weight: 600;
+            text-align: center;
+            letter-spacing: 1px;
+            transition: all 0.4s ease;
+        }
+
+        @media (min-width: 768px) {
+            #text { font-size: 38px; }
+        }
+
+        @media (min-width: 1024px) {
+            #text { font-size: 44px; }
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="text"></div>
+
+<script>
+
+// 💙 start
+const startMessages = [
+    "I love you baby💙",
+    "Main aapse bohat pyaar karta hoon💙",
+    "Mi tuzhyavar khup prem karto💙"
+];
+
+// 💙 messages
+const baseMessages = ["I love you baby💙","Te amo bebé💙","Je t'aime bébé💙","Ich liebe dich baby💙",
+"Ti amo baby💙","Eu te amo bebê💙","Ik hou van je baby💙","Kocham cię kochanie💙",
+"Jag älskar dig baby💙","Jeg elsker deg baby💙","Minä rakastan sinua baby💙",
+"Я тебя люблю малыш💙","Я тебе кохаю малюк💙","Seni seviyorum bebeğim💙",
+"Ana uhibbuka ya habibi💙","אני אוהב אותך מותק💙",
+"আমি তোমাকে ভালোবাসি বাবু💙","ਮੈਂ ਤੈਨੂੰ ਪਿਆਰ ਕਰਦਾ ਹਾਂ ਬੇਬੀ💙",
+"मैं तुमसे प्यार करता हूँ बेबी💙","मी तुला प्रेम करतो बेबी💙",
+"நான் உன்னை காதலிக்கிறேன் பேபி💙","నేను నిన్ను ప్రేమిస్తున్నాను బేబీ💙",
+"ನಾನು ನಿನ್ನ ಪ್ರೀತಿಸುತ್ತೇನೆ ಬೇಬಿ💙","നാൻ നിന്നെ സ്നേഹിക്കുന്നു ബേബി💙",
+"મેં તને પ્રેમ કરું છું બેબી💙","මම ඔයාට ආදරෙයි බේබි💙",
+"ฉันรักคุณ เบบี้💙","Aku cinta kamu sayang💙",
+"Mahal kita baby💙","Tôi yêu bạn em yêu💙",
+"我爱你宝贝💙","愛してるベイビー💙","사랑해 자기야💙",
+"Nakupenda baby💙","Ngiyakuthanda baby💙",
+"Ek het jou lief baby💙","Mo nifẹ rẹ baby💙",
+"Ndiyakuthanda baby💙","T'estimo bebé💙",
+"Te iubesc iubire💙","Szeretlek baby💙",
+"Miluji tě zlato💙","Ľúbim ťa baby💙",
+"Obicham te bebe💙","Të dua baby💙",
+"S'agapo moro💙","Ke a go rata baby💙",
+"Aloha wau ia oe baby💙","Mi amas vin karulo💙"
+];
+
+// repeat
+const fastMessages = [...baseMessages, ...baseMessages, ...baseMessages];
+
+// 🎨 soft aesthetic palette (muted tones)
+const colors = [
+"#f8c8dc", // soft pink
+"#cdb4db", // lavender
+"#bde0fe", // baby blue
+"#a8dadc", // aqua pastel
+"#d8f3dc", // mint
+"#fae1dd", // peach light
+"#e2ece9", // grey soft
+"#dee2ff"  // light indigo
+];
+
+let index = 0;
+
+// 🌈 minimal glow (very soft)
+function setRandomColor() {
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    const text = document.getElementById("text");
+
+    text.style.color = color;
+    text.style.textShadow = `0 0 6px rgba(255,255,255,0.15)`;
+}
+
+// start
+function showStartMessages(i) {
+    if (i >= startMessages.length) {
+        startFastAnimation();
+        return;
+    }
+
+    const text = document.getElementById("text");
+    text.innerText = startMessages[i];
+    setRandomColor();
+
+    setTimeout(() => showStartMessages(i + 1), 3000);
+}
+
+// animation
+function startFastAnimation() {
+    let count = 0;
+
+    const interval = setInterval(() => {
+        const text = document.getElementById("text");
+
+        text.innerText = fastMessages[index];
+        setRandomColor();
+
+        index = (index + 1) % fastMessages.length;
+        count++;
+
+        if (count >= fastMessages.length) {
+            clearInterval(interval);
+            showFinalMessage();
+        }
+
+    }, 120); // thoda smooth
+}
+
+// final
+function showFinalMessage() {
+    const text = document.getElementById("text");
+
+    setInterval(() => {
+        text.innerText = "I love you sooooo much sweetheart💙";
+        setRandomColor();
+    }, 700);
+}
+
+showStartMessages(0);
+
+</script>
+
+</body>
+</html>
